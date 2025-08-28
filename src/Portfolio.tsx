@@ -50,7 +50,7 @@ const Portfolio: React.FC = () => {
                         <img src={`data:image/svg+xml;utf8,${encodeURIComponent(tintSvg(siFacebook.svg, '#d1d5db'))}`} alt="Facebook" className="w-5 h-5 inline align-text-bottom mr-1" />
                         Facebook
                     </a>
-                    <a href="#https://twitter.com/dragonemperorss" target="_blank" className="portfolio-link ml-3">
+                    <a href="https://twitter.com/dragonemperorss" target="_blank" className="portfolio-link ml-3">
                         <img src={`data:image/svg+xml;utf8,${encodeURIComponent(tintSvg(siX.svg, '#d1d5db'))}`} alt="Twitter" className="w-5 h-5 inline align-text-bottom mr-1" />
                         Twitter
                     </a>
