@@ -1,0 +1,56 @@
+@import "../styles/globals.css";
+
+@layer base {
+  :root {
+    @apply font-sans;
+  }
+
+  body {
+    @apply m-0 bg-background text-foreground;
+  }
+}
+
+/* Basic reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Semantic utilities for portfolio */
+@layer components {
+  .portfolio-page {
+    @apply flex min-h-screen bg-gray-900 text-white;
+  }
+  .portfolio-sidebar {
+    @apply w-64 bg-gray-200 p-8 border-r border-gray-300 text-black;
+  }
+  .portfolio-sidebar-title {
+    @apply text-xl font-bold text-black m-0 text-center;
+  }
+  .portfolio-sidebar-icon {
+    @apply text-5xl mb-3 text-black flex justify-center items-center;
+  }
+  .portfolio-main {
+    @apply flex-1 p-8 bg-gray-900;
+  }
+  .portfolio-h2 {
+    @apply text-2xl mb-4 text-gray-500;
+  }
+  .portfolio-text {
+    @apply text-gray-100;
+  }
+  .portfolio-link {
+    @apply text-gray-300 no-underline hover:text-white;
+  }
+}
+
+/* Ensure dark theme consistency */
+html {
+  background-color: #1a1a1a;
+}
