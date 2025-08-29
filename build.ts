@@ -33,7 +33,7 @@ Example:
   process.exit(0);
 }
 
-const toCamelCase = (str: string): string => str.replace(/-([a-z])/g, g => g[1].toUpperCase());
+const toCamelCase = (str: string): string => str.replace(/-([a-z])/g, (_m, p1: string) => p1.toUpperCase());
 
 const parseValue = (value: string): any => {
   if (value === "true") return true;
@@ -47,8 +47,8 @@ const parseValue = (value: string): any => {
   return value;
 };
 
-function parseArgs(): Partial<Bun.BuildConfig> {
-  const config: Partial<Bun.BuildConfig> = {};
+function parseArgs(): Record<string, any> {
+  const config: Record<string, any> = {};
   const args = process.argv.slice(2);
 
   for (let i = 0; i < args.length; i++) {
@@ -81,9 +81,10 @@ function parseArgs(): Partial<Bun.BuildConfig> {
     key = toCamelCase(key);
 
     if (key.includes(".")) {
-      const [parentKey, childKey] = key.split(".");
+      const [parentKey = "", childKey = ""] = key.split(".");
+      if (!parentKey || !childKey) continue;
       config[parentKey] = config[parentKey] || {};
-      config[parentKey][childKey] = parseValue(value);
+      (config[parentKey] as Record<string, any>)[childKey] = parseValue(value);
     } else {
       config[key] = parseValue(value);
     }
@@ -125,6 +126,7 @@ console.log(`📄 Found ${entrypoints.length} HTML ${entrypoints.length === 1 ? 
 const result = await Bun.build({
   entrypoints,
   outdir,
+  env: "BUN_PUBLIC_*",
   plugins: [plugin],
   minify: true,
   target: "browser",

@@ -3,6 +3,7 @@ import { CodeXml, ExternalLink } from "lucide-react";
 import { siGithub, siGmail, siFacebook, siX, siSteam, siGoogleplay, siItchdotio } from "simple-icons/icons";
 import { tintSvg } from "./lib/utils";
 import Microlink from "@microlink/react";
+import GithubContributions from "./components/GithubContributions";
 
 const Portfolio: React.FC = () => {
 	return (
@@ -27,6 +28,8 @@ const Portfolio: React.FC = () => {
 						<img src={`data:image/svg+xml;utf8,${encodeURIComponent(siGmail.svg)}`} alt="Gmail" className="w-6 h-6" />
 					</a>
 				</div>
+
+                <GithubContributions username="gunbaranai" className="justify-center items-center m-8 text-center" />
 			</div>
 
 			{/* Main Content */}
@@ -38,6 +41,8 @@ const Portfolio: React.FC = () => {
 					Phaser.js<br />
 					Ruby Game Scripting System 3
 				</p>
+
+				{/* <h2 className="portfolio-h2">Contributions (Last 30 days)</h2> */}
 
 				<h2 className="portfolio-h2">On This Site: Sample Pages</h2>
 				<Microlink className="mb-2" url="https://gunbaranai.github.io/gendou-ringo-page/" media="screenshot" size="small" />
