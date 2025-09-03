@@ -41,15 +41,18 @@ jobs:
           envkey_BUN_PUBLIC_GITHUB_TOKEN: ${{ secrets.BUN_PUBLIC_GITHUB_TOKEN }}
           file_name: .env
 
-      - name: Verify .env file
-        run: |
-          if [ -f .env ]; then
-            echo ".env file created successfully."
-            echo "Token length: $(wc -c < .env)"
-          else
-            echo ".env file not found!"
-            exit 1
-          fi
+      # - name: Verify .env file
+      #   run: |
+      #     if [ -f .env ]; then
+      #       echo ".env file created successfully."
+      #       echo "Token length: $(wc -c < .env)"
+      #     else
+      #       echo ".env file not found!"
+      #       exit 1
+      #     fi
+
+      - name: Verify .env file with bun
+        run: bun --print process.env
 
       - name: Install deps
         run: bun install --ci
