@@ -30,7 +30,7 @@ jobs:
         run: bun install --ci
 
       - name: Create .env file
-        run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN  }}" > .env
+        run: echo "GITHUB_TOKEN=${{ secrets.BUN_PUBLIC_GITHUB_TOKEN  }}" > .env
 
       # Optional typecheck (if you add typescript)
       # - run: bunx tsc --noEmit
