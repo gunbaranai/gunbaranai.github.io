@@ -26,14 +26,20 @@ jobs:
         with:
           bun-version: latest
           
-      - name: Create .env file
-        run: echo "BUN_PUBLIC_GITHUB_TOKEN=${BUN_PUBLIC_GITHUB_TOKEN}" > .env
-        env:
-          BUN_PUBLIC_GITHUB_TOKEN: ${{ secrets.BUN_PUBLIC_GITHUB_TOKEN }}
+      # - name: Create .env file
+      #   run: echo "BUN_PUBLIC_GITHUB_TOKEN=${BUN_PUBLIC_GITHUB_TOKEN}" > .env
+      #   env:
+      #     BUN_PUBLIC_GITHUB_TOKEN: ${{ secrets.BUN_PUBLIC_GITHUB_TOKEN }}
       
-      - name: Verify .env file
-        run: |
-          echo ".env file created with token length: $(wc -c < .env)"
+      # - name: Verify .env file
+      #   run: |
+      #     echo ".env file created with token length: $(wc -c < .env)"
+
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_BUN_PUBLIC_GITHUB_TOKEN: ${{ secrets.BUN_PUBLIC_GITHUB_TOKEN }}
+          file_name: .env
 
       - name: Install deps
         run: bun install --ci
