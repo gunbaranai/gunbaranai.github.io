@@ -25,19 +25,18 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-
-      - name: Install deps
-        run: bun install --ci
-
+          
       - name: Create .env file
-        run: |
-          echo "BUN_PUBLIC_GITHUB_TOKEN=${BUN_PUBLIC_GITHUB_TOKEN}" > .env
+        run: echo "BUN_PUBLIC_GITHUB_TOKEN=${BUN_PUBLIC_GITHUB_TOKEN}" > .env
         env:
           BUN_PUBLIC_GITHUB_TOKEN: ${{ secrets.BUN_PUBLIC_GITHUB_TOKEN }}
       
       - name: Verify .env file
         run: |
           echo ".env file created with token length: $(wc -c < .env)"
+
+      - name: Install deps
+        run: bun install --ci
 
       # Optional typecheck (if you add typescript)
       # - run: bunx tsc --noEmit
